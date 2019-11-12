@@ -21,7 +21,8 @@ block content
                     li
                         label.signup__input-label(for="nationality") Nationality
                         select.signup__select.signup__select--nationality(name="nationality" id="nationality")
-                            +option("American", 1)
+                            option(value="") Select nationality
+                            +option("American")
                             +option("Russian")
                             +option("Briton")
                             +option("Chinese")
@@ -31,15 +32,18 @@ block content
                     li.signup__fieldset
                         p.signup__legend Date of birth
                         select.signup__select.signup__select--birth.signup__select--birth-day(name="birthDay" required)
+                            option(value="") Day
                             - var birthDay = 0; 
                             while birthDay < 31
                                 - birthDay++
                                 +option(birthDay)
                         select.signup__select.signup__select--birth.signup__select--birth-month(name="birthMounth" required)
+                            option(value="") Month
                             - var birthMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                             each birthMonth in birthMonths
                                 +option(birthMonth)
                         select.signup__select.signup__select--birth.signup__select--birth-year(name="birthYear" required)
+                            option(value="") Year
                             - var birthYear = 2019; 
                             while birthYear > 1949
                                 +option(birthYear)
