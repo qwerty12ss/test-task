@@ -1,0 +1,65 @@
+extends /blocks/layout-default/layout-default
+
+block head
+    - var pageTitle = 'Регистрация';
+
+block content
+    article.signup
+        .signup__page-header-wrapper
+            h1.signup__page-header Sign up
+        .signup__form-wrapper
+            h2.signup__annotation-header New user?
+            p.signup__annotation-text Use the form below to create your account.
+            form.signup__form(method="post")
+                ul.signup__form-field-list
+                    li
+                        label.signup__input-label(for="firstName") First Name
+                        input.signup__input-text(type="text" placeholder="Alice" name="firstName" id="firstName" required)
+                    li
+                        label.signup__input-label(for="lastName") Last Name
+                        input.signup__input-text(type="text" placeholder="Miller" name="lastName" id="lastName" required)
+                    li
+                        label.signup__input-label(for="nationality") Nationality
+                        select.signup__select.signup__select--nationality(name="nationality" id="nationality")
+                            +option("American", 1)
+                            +option("Russian")
+                            +option("Briton")
+                            +option("Chinese")
+                    li
+                        label.signup__input-label(for="email") E-mail
+                        input.signup__input-text(type="email" placeholder="alice.miller@yahoo.com" name="email" id="email" required)
+                    li.signup__fieldset
+                        p.signup__legend Date of birth
+                        select.signup__select.signup__select--birth.signup__select--birth-day(name="birthDay" required)
+                            - var birthDay = 0; 
+                            while birthDay < 31
+                                - birthDay++
+                                +option(birthDay)
+                        select.signup__select.signup__select--birth.signup__select--birth-month(name="birthMounth" required)
+                            - var birthMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                            each birthMonth in birthMonths
+                                +option(birthMonth)
+                        select.signup__select.signup__select--birth.signup__select--birth-year(name="birthYear" required)
+                            - var birthYear = 2019; 
+                            while birthYear > 1949
+                                +option(birthYear)
+                                - birthYear--
+                    li.signup__fieldset.signup__fieldset--gender
+                        p.signup__legend Gender
+                        .signup__radio-wrapper
+                            input.signup__radio-gender(type="radio" name="gender" value="male" id="genderMale")
+                            label.signup__gender-label(for="genderMale") Male
+                        .signup__radio-wrapper
+                            input.signup__radio-gender(type="radio" name="gender" value="female" id="genderFemale" checked)
+                            label.signup__gender-label(for="genderFemale") Female
+                    li
+                        label.signup__input-label(for="password") Password
+                        input.signup__input-text(type="password" name="password" id="password" required)
+                    li
+                        label.signup__input-label(for="confirmPassword") Confirm Password
+                        input.signup__input-text(type="password" name="confirmPassword" id="confirmPassword" required)
+                .signup__form-bottom-wrapper
+                    p.signup__have-account
+                        | Have an account? 
+                        a(href="#") Login
+                    input.signup__form-submit-btn(type="submit" value="Complete Signup")

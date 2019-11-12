@@ -1,0 +1,13 @@
+mixin scripts(scripts)
+	each src in scripts
+		- var isExternalScript = /^(?:https?\:)?\/\//i;
+		- src = isExternalScript.test(src) ? src : '/assets/scripts/' + src;
+		script(src=src)
+
+
+mixin option(value,selected)
+	if selected == 1
+		option(value= value selected)= value
+	else
+		option(value= value)= value
+	
